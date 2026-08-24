@@ -4,4 +4,4 @@ Interactive scouting-dossier portfolio for an analyst and developer, built with 
 
 ## Live site
 
-Published with GitHub Pages.
+Published with GitHub Pages at [karangupta.qd.je](https://karangupta.qd.je/).
