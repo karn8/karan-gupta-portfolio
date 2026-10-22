@@ -1,104 +1,59 @@
-const folder = document.querySelector('.portfolio-folder');
-const openButton = document.querySelector('.open-dossier');
-const folderFront = document.querySelector('.folder-front');
-const tabs = [...document.querySelectorAll('.file-tab')];
-const sheets = [...document.querySelectorAll('.file-sheet')];
-const tabList = document.querySelector('.file-tabs');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-tabList.inert = true;
-document.querySelector('.file-window').inert = true;
-tabs.forEach(tab => {
-  tab.id = `tab-${tab.dataset.file}`;
-  tab.setAttribute('role', 'tab');
-  tab.setAttribute('aria-controls', `panel-${tab.dataset.file}`);
-  tab.tabIndex = tab.classList.contains('is-active') ? 0 : -1;
-});
-sheets.forEach(sheet => {
-  sheet.id = `panel-${sheet.dataset.sheet}`;
-  sheet.setAttribute('role', 'tabpanel');
-  sheet.setAttribute('aria-labelledby', `tab-${sheet.dataset.sheet}`);
-  sheet.tabIndex = 0;
-});
+const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+const revealElements = [...document.querySelectorAll('.reveal')];
 
-function openFolder() {
-  folder.classList.add('is-open');
-  folderFront.hidden = true;
-  tabList.inert = false;
-  document.querySelector('.file-window').inert = false;
-  openButton.setAttribute('aria-expanded', 'true');
-  openButton.querySelector('span').textContent = 'Back to the dossier';
-  folder.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'start' });
-}
-
-function selectFile(name) {
-  tabs.forEach((tab) => {
-    const active = tab.dataset.file === name;
-    tab.classList.toggle('is-active', active);
-    tab.setAttribute('aria-selected', String(active));
-    tab.tabIndex = active ? 0 : -1;
+// Content stays visible without JavaScript or when reduced motion is preferred.
+if ('IntersectionObserver' in window && !motionPreference.matches) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+  revealElements.forEach(element => {
+    element.classList.add('will-reveal');
+    revealObserver.observe(element);
   });
-
-  sheets.forEach((sheet) => {
-    const active = sheet.dataset.sheet === name;
-    sheet.hidden = !active;
-    sheet.classList.toggle('is-active', active);
+  motionPreference.addEventListener('change', event => {
+    if (event.matches) {
+      revealElements.forEach(element => element.classList.add('is-visible'));
+      revealObserver.disconnect();
+    }
   });
 }
 
-function openAndFocus() {
-  openFolder();
-  tabs.find(tab => tab.classList.contains('is-active')).focus({ preventScroll: true });
+const navigationLinks = [...document.querySelectorAll('.floating-nav a')];
+const navigationTargets = navigationLinks.map(link => document.querySelector(link.hash));
+function updateNavigation() {
+  const marker = window.innerHeight * .45;
+  let current = navigationTargets[0];
+  navigationTargets.forEach(target => {
+    if (target.getBoundingClientRect().top <= marker) current = target;
+  });
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
+    current = navigationTargets[navigationTargets.length - 1];
+  }
+  navigationLinks.forEach(link => {
+    const active = link.hash === `#${current.id}`;
+    link.classList.toggle('is-current', active);
+    if (active) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
 }
-openButton.addEventListener('click', openAndFocus);
-folderFront.addEventListener('click', openAndFocus);
-folderFront.addEventListener('keydown', event => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault();
-    openAndFocus();
-  }
-});
-tabs.forEach((tab) => tab.addEventListener('click', () => {
-  selectFile(tab.dataset.file);
-  history.replaceState(null, '', `#${tab.dataset.file}`);
-}));
+let scrollScheduled = false;
+window.addEventListener('scroll', () => {
+  if (scrollScheduled) return;
+  scrollScheduled = true;
+  requestAnimationFrame(() => { updateNavigation(); scrollScheduled = false; });
+}, { passive: true });
+window.addEventListener('resize', updateNavigation);
+updateNavigation();
+document.querySelector('#year').textContent = new Date().getFullYear();
 
-tabList.addEventListener('keydown', (event) => {
-  if (!event.target.matches('.file-tab')) return;
-  if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
-  event.preventDefault();
-  const activeIndex = tabs.findIndex((tab) => tab.classList.contains('is-active'));
-  if (event.key === 'ArrowRight') {
-    const next = tabs[(activeIndex + 1) % tabs.length];
-    selectFile(next.dataset.file);
-    next.focus();
-  }
-  if (event.key === 'ArrowLeft') {
-    const next = tabs[(activeIndex - 1 + tabs.length) % tabs.length];
-    selectFile(next.dataset.file);
-    next.focus();
-  }
-  if (event.key === 'Home' || event.key === 'End') {
-    const next = event.key === 'Home' ? tabs[0] : tabs[tabs.length - 1];
-    selectFile(next.dataset.file);
-    next.focus();
-  }
-  const selected = tabs.find(tab => tab.classList.contains('is-active'));
-  history.replaceState(null, '', `#${selected.dataset.file}`);
-  selected.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' });
-});
-
-document.querySelectorAll('[data-open-file]').forEach(link => link.addEventListener('click', event => {
-  event.preventDefault();
-  selectFile(link.dataset.openFile);
-  history.replaceState(null, '', `#${link.dataset.openFile}`);
-  openAndFocus();
-}));
-function restoreFile() {
-  const name = location.hash.slice(1);
-  if (tabs.some(tab => tab.dataset.file === name)) {
-    selectFile(name);
-    openFolder();
-  } else if (name === 'portfolio-folder') openAndFocus();
+// Keep links shared from the previous portfolio useful after the redesign.
+const legacySections = { dossier: 'intro', profile: 'about', work: 'experience', academy: 'education', 'portfolio-folder': 'projects' };
+const redirectedSection = legacySections[window.location.hash.slice(1)];
+if (redirectedSection) {
+  history.replaceState(null, '', `#${redirectedSection}`);
+  document.getElementById(redirectedSection).scrollIntoView({ behavior: 'instant' });
 }
-window.addEventListener('hashchange', restoreFile);
-restoreFile();

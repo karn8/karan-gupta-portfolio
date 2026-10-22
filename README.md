@@ -1,6 +1,6 @@
 # Karan Gupta — Portfolio
 
-Interactive scouting-dossier portfolio for an analyst and developer, built with HTML, CSS, and JavaScript.
+A minimal portfolio for an analyst and developer, built with HTML, CSS, and vanilla JavaScript. DM Sans and Inter Tight typography, restrained motion, accessible navigation, responsive layouts, and system light/dark appearance.
 
 ## Live site
 
