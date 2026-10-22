@@ -5,14 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Karan Gupta — analyst, developer and decision-system builder.">
   <title>Karan Gupta | Analyst / Developer</title>
+  <meta name="theme-color" content="#10100e">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="canonical" href="https://karangupta.qd.je/">
   <meta property="og:url" content="https://karangupta.qd.je/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <noscript><style>.folder-front,.folder-back,.file-tabs,.open-dossier{display:none!important}.file-window{opacity:1;transform:none}.file-sheet[hidden]{display:block!important}.portfolio-folder{min-height:0}.file-sheet{border-bottom:2px solid #10100e}</style></noscript>
 </head>
 <body>
+  <a class="skip-link" href="#portfolio-folder">Skip to portfolio files</a>
   <div class="pitch-grid" aria-hidden="true"></div>
   <header class="site-header">
     <a class="wordmark" href="#dossier" aria-label="Karan Gupta portfolio home">
@@ -20,6 +26,8 @@
       <span><b>KARAN GUPTA</b><small>ANALYST / DEVELOPER</small></span>
     </a>
     <div class="header-links">
+      <a href="#work" data-open-file="work">Experience</a>
+      <a href="#projects" data-open-file="projects">Projects</a>
       <a href="https://github.com/karn8" target="_blank" rel="noreferrer">GitHub ↗</a>
       <a href="https://linkedin.com/in/karangupta8" target="_blank" rel="noreferrer">LinkedIn ↗</a>
     </div>
@@ -28,15 +36,16 @@
   <main id="dossier">
     <section class="intro" aria-labelledby="intro-title">
       <div class="intro-copy">
-        <p class="eyebrow">Scouting report · Manchester / India · 2026</p>
+        <p class="eyebrow">Scouting report · Bengaluru / open to relocate · 2026</p>
         <h1 id="intro-title">I read the game.<br><em>Then I build the system.</em></h1>
         <p class="intro-lead">Business analyst instincts. Software engineering execution. I turn uncertain, messy operations into decision tools people can actually use.</p>
         <div class="intro-actions">
           <button class="open-dossier" type="button" aria-controls="portfolio-folder" aria-expanded="false">
             <span>Open the dossier</span><b>↘</b>
           </button>
-          <span class="micro-note">Five files · selected evidence · no fluff</span>
+          <a class="contact-link" href="mailto:gupta.karanp@gmail.com">Let’s talk <span aria-hidden="true">↗</span></a>
         </div>
+        <div class="career-snapshot" aria-label="At a glance"><span>Honeywell Life Sciences</span><span>Tata Motors</span><span>Manchester × VIT</span></div>
       </div>
 
       <aside class="player-card" aria-label="Profile summary">
@@ -56,17 +65,17 @@
     </section>
 
     <section class="folder-stage" aria-label="Interactive portfolio dossier">
-      <div class="portfolio-folder" id="portfolio-folder">
+      <div class="portfolio-folder" id="portfolio-folder" tabindex="-1">
         <div class="folder-back" aria-hidden="true">
           <div class="folder-label">KG / RECRUITMENT FILE / 2026</div>
         </div>
 
-        <nav class="file-tabs" aria-label="Portfolio files">
+        <nav class="file-tabs" role="tablist" aria-label="Portfolio files">
           <button class="file-tab is-active" type="button" data-file="profile" aria-selected="true"><span>01</span>Profile</button>
-          <button class="file-tab" type="button" data-file="work" aria-selected="false"><span>02</span>Work XI</button>
-          <button class="file-tab" type="button" data-file="projects" aria-selected="false"><span>03</span>Match reports</button>
+          <button class="file-tab" type="button" data-file="work" aria-selected="false"><span>02</span>Experience</button>
+          <button class="file-tab" type="button" data-file="projects" aria-selected="false"><span>03</span>Projects</button>
           <button class="file-tab" type="button" data-file="research" aria-selected="false"><span>04</span>Research</button>
-          <button class="file-tab" type="button" data-file="academy" aria-selected="false"><span>05</span>Academy</button>
+          <button class="file-tab" type="button" data-file="academy" aria-selected="false"><span>05</span>Education</button>
         </nav>
 
         <div class="file-window">
@@ -80,7 +89,7 @@
                 <div class="quote-block">“The best analysis does not end in a slide. It changes what happens next.”</div>
               </div>
               <div class="profile-facts">
-                <div><small>Current base</small><strong>Manchester, UK</strong></div>
+                <div><small>Current base</small><strong>Bengaluru, India</strong></div>
                 <div><small>Education</small><strong>MSc Business Analytics</strong></div>
                 <div><small>First principle</small><strong>Useful beats impressive</strong></div>
                 <div><small>Off the pitch</small><strong>Football · BVB · Music</strong></div>
@@ -112,7 +121,7 @@
               <article class="work-card">
                 <div class="logo-box logo-red"><img src="assets/logos/honeywell.png" alt="Honeywell"></div>
                 <div class="work-copy">
-                  <div class="work-heading"><div><h3>Honeywell</h3><p>Software Engineer Intern · Bengaluru</p></div><time>Jan — Jul 2025</time></div>
+                  <div class="work-heading"><div><h3>Honeywell Life Sciences</h3><p>Software Engineer Intern · Bengaluru</p></div><time>Jan — Jul 2025</time></div>
                   <p>Proposed and engineered an AI compliance-scanning module for pharmaceutical quality reviews, combining NLP classification, LLM suggestions and time-series analysis through FastAPI.</p>
                   <div class="impact-strip"><span><b>20+</b> automated UI/API tests</span><span><b>10h</b> saved per QA cycle</span><span><b>+10%</b> test coverage</span></div>
                 </div>
@@ -173,6 +182,7 @@
                 <p class="research-title">Sentiment-Based Rating Model using VADER and TextBlob</p>
                 <p class="authors">Raj Aryan · <strong>Karan Gupta</strong> · Anjaneya Gupta · Ashwin Tiwari · Suteerth Subramaniam</p>
                 <div class="research-abstract">A comparative system for translating text sentiment into five-star ratings using linear, exponential, piece-wise, quantile and sigmoid scaling—evaluated against accuracy, RMSE and weighted F1.</div>
+                <p class="research-data">Built around a large corpus of Coursera course reviews, with data cleaning, tokenisation and text standardisation before sentiment modelling and evaluation.</p>
                 <a class="paper-link" href="https://ijirt.org/article?manuscript=164257" target="_blank" rel="noreferrer">Read the publication ↗</a>
               </div>
               <aside class="research-notes">
@@ -189,12 +199,12 @@
             <div class="sheet-meta"><span>FILE 05 / ACADEMY RECORD</span><span>FOUNDATIONS</span></div>
             <div class="sheet-title-row">
               <div><p class="sheet-kicker">Education</p><h2 id="academy-heading">Technical roots. Commercial vision.</h2></div>
-              <div class="yellow-stamp">MERIT<br>TRACK</div>
+              <div class="yellow-stamp">TECH ×<br>BUSINESS</div>
             </div>
             <div class="academy-list">
               <article>
                 <div class="uni-logo manchester-mark"><img src="assets/logos/manchester.png" alt="The University of Manchester logo"><span>M</span></div>
-                <div><time>2025 — 2026</time><h3>The University of Manchester</h3><p>MSc Business Analytics · Merit</p><small>Optimisation · Linear programming · Applied statistics · Forecasting · Business intelligence</small></div>
+                <div><time>2025 — 2026</time><h3>The University of Manchester</h3><p>MSc Business Analytics: Operational Research and Risk Analysis</p><small>Alliance Manchester Business School · Optimisation · Linear programming · Applied statistics · Forecasting · Business intelligence</small></div>
               </article>
               <article>
                 <div class="uni-logo vit-mark"><img src="assets/logos/vit.webp" alt="Vellore Institute of Technology logo"><span>VIT</span></div>
@@ -209,7 +219,7 @@
           </article>
         </div>
 
-        <div class="folder-front" aria-hidden="true">
+        <div class="folder-front" role="button" tabindex="0" aria-label="Open portfolio dossier">
           <div class="folder-front-copy"><small>CONFIDENTIAL SCOUTING DOSSIER</small><b>KARAN<br>GUPTA</b><span>ANALYST / DEVELOPER · KG11</span></div>
           <div class="folder-open-mark">OPEN ↘</div>
           <div class="folder-corner">BVB<br>INFLUENCE</div>
