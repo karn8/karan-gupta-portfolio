@@ -30,14 +30,18 @@ function updateChapters() {
   const distance = Math.max(1, chapters.offsetHeight - innerHeight);
   const progress = Math.max(0, Math.min(1, -bounds.top / distance)) * (chapterCards.length - 1);
   chapterCards.forEach((card, index) => {
-    const offset = index - progress;
-    const exit = Math.max(0, -offset);
-    const depth = Math.min(3.5, Math.max(0, offset));
-    card.style.setProperty('--card-y', `${-depth * 24 - exit * (innerHeight * .7)}px`);
-    card.style.setProperty('--card-scale', String(1 - depth * .045));
-    card.style.setProperty('--card-opacity', String(Math.max(0, 1 - Math.max(0, exit - .6) * 3)));
+    // A centred deck: two stepped cards above and two below the front card.
+    let offset = index - progress;
+    const halfDeck = chapterCards.length / 2;
+    while (offset > halfDeck) offset -= chapterCards.length;
+    while (offset < -halfDeck) offset += chapterCards.length;
+    const depth = Math.abs(offset);
+    card.style.setProperty('--card-y', `${offset * 42}px`);
+    card.style.setProperty('--card-scale', String(1 - depth * .075));
+    card.style.setProperty('--card-opacity', String(Math.min(1, (halfDeck - depth) * 4)));
+    card.style.setProperty('--card-detail', String(Math.max(0, 1 - depth * 2)));
     card.style.setProperty('--card-rotate', '0deg');
-    card.style.setProperty('--card-z', String(chapterCards.length - index));
+    card.style.setProperty('--card-z', String(Math.round((chapterCards.length - depth) * 100)));
   });
   chapterCounter.textContent = `${String(Math.min(chapterCards.length, Math.floor(progress + .55) + 1)).padStart(2, '0')} / 05`;
 }
