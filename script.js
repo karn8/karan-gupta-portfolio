@@ -71,8 +71,17 @@ if ('IntersectionObserver' in window && !motionPreference.matches) {
 }
 
 const navigationLinks = [...document.querySelectorAll('.floating-nav a')];
+const floatingNavigation = document.querySelector('.floating-nav');
+const contactDock = document.querySelector('.contact-dock');
 const navigationTargets = navigationLinks.map(link => document.querySelector(link.hash));
 function updateNavigation() {
+  const progress = motionPreference.matches ? Number(scrollY > 80) : Math.min(1, Math.max(0, scrollY / 360));
+  const viewportWidth = document.documentElement.clientWidth;
+  const gutter = viewportWidth <= 600 ? 8 : 28;
+  const shift = Math.max(0, (viewportWidth - floatingNavigation.getBoundingClientRect().width) / 2 - gutter) * progress;
+  floatingNavigation.style.setProperty('--dock-shift', `${shift}px`);
+  contactDock.classList.toggle('is-shown', progress > .85);
+  contactDock.inert = progress <= .85;
   const marker = window.innerHeight * .45;
   let current = navigationTargets[0];
   navigationTargets.forEach(target => {
