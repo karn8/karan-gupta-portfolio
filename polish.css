@@ -109,7 +109,7 @@
 .easter-egg-note { color: var(--secondary); font-size: 11px; margin-left: 5px; }
 .easter-egg-toggle[hidden], .easter-egg-note[hidden] { display: none !important; }
 .screenshot-visual { aspect-ratio: 1.45; display: block; padding: clamp(12px, 1.6vw, 22px); }
-.celerity-visual.screenshot-visual, .orbit-visual.screenshot-visual { background: #f8f7f4; }
+.celerity-visual.screenshot-visual, .orbit-visual.screenshot-visual { background: #202120; }
 .preview-frame { width: 100%; height: 100%; display: grid; grid-template-rows: 26px minmax(0, 1fr); background: #f8f7f4; border: 1px solid #deddd8; box-shadow: 0 5px 18px #00000005; }
 .preview-toolbar { display: flex; align-items: center; gap: 18px; padding: 0 10px; background: #f8f7f4; color: #686b64; border-bottom: 1px solid #e9e7e1; font: 400 9px var(--body); }
 .preview-dots { color: #b8bcb2; letter-spacing: 1px; font-size: 7px; }
