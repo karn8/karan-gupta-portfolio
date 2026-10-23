@@ -106,6 +106,19 @@ window.addEventListener('scroll', () => {
 window.addEventListener('resize', () => { updateNavigation(); updateChapters(); });
 updateNavigation();
 document.querySelector('#year').textContent = new Date().getFullYear();
+const personalNoteToggle = document.querySelector('.easter-egg-toggle');
+const personalNote = document.querySelector('.easter-egg-note');
+personalNoteToggle.hidden = false;
+personalNoteToggle.addEventListener('click', () => {
+  personalNote.hidden = !personalNote.hidden;
+  personalNoteToggle.setAttribute('aria-expanded', String(!personalNote.hidden));
+});
+personalNoteToggle.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    personalNote.hidden = true;
+    personalNoteToggle.setAttribute('aria-expanded', 'false');
+  }
+});
 
 // Keep links shared from the previous portfolio useful after the redesign.
 const legacySections = { dossier: 'intro', profile: 'about', work: 'experience', academy: 'education', 'portfolio-folder': 'projects' };

@@ -103,3 +103,8 @@
   .floating-nav, .contact-dock { background: var(--bg); border: 2px solid var(--ink); backdrop-filter: none; }
 }
 @media print { .contact-dock { display: none; } }
+.easter-egg-toggle { margin-left: 8px; padding: 0 7px; min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--secondary); font: inherit; cursor: pointer; letter-spacing: .04em; }
+.easter-egg-toggle:hover { color: var(--ink); }
+.easter-egg-toggle:focus-visible { outline: 1px solid var(--ink); outline-offset: 1px; }
+.easter-egg-note { color: var(--secondary); font-size: 11px; margin-left: 5px; }
+.easter-egg-toggle[hidden], .easter-egg-note[hidden] { display: none !important; }
