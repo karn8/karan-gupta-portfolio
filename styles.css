@@ -1,5 +1,5 @@
 :root{
-  color-scheme:light dark;
+  color-scheme:light;
   --bg:#fafafa;
   --surface:#f1f1f0;
   --surface-raised:#fff;
@@ -1690,57 +1690,7 @@ section,footer{
     gap:10px
   }
 }
-@media(prefers-color-scheme:dark){
-  :root{
-    --bg:#181918;
-    --surface:#222421;
-    --surface-raised:#2d302b;
-    --ink:#efefeb;
-    --secondary:#b3b7ae;
-    --faint:#a0a69a;
-    --line:#3a3e35;
-    --soft:#2b2f27
-  }
-  .energy-visual{
-    background:#242820
-  }
-  .project-visual{
-    border-color:#ffffff06
-  }
-  .orbit-ring{
-    border-color:#c4ccba25
-  }
-  .schedule-grid .fill{
-    background:#858d7d
-  }
-  .floating-nav{
-    background:#383d33de;
-    border-color:#ffffff15;
-    box-shadow:0 6px 26px #00000020,inset 0 1px 0 #ffffff12
-  }
-  .floating-nav a{
-    color:#d1d6c9
-  }
-  .floating-nav a:hover{
-    color:#fff;
-    background:#ffffff15
-  }
-  .floating-nav a.is-current{
-    background:#ffffff20;
-    color:#fff
-  }
-  .floating-nav .nav-contact{
-    background:#e4e8de;
-    color:#252922
-  }
-  .floating-nav .nav-contact:hover,.floating-nav .nav-contact.is-current{
-    background:#fff;
-    color:#252922
-  }
-  .mini-brand img,.orbit-core img{
-    filter:grayscale(1) brightness(1.4)
-  }
-}
+
 @media(prefers-reduced-motion:reduce){
   html{
     scroll-behavior:auto
@@ -1894,76 +1844,15 @@ the introduction and navigation stay neutral. */
 .experience-company h3,.education-card h3{
   color:var(--ink)
 }
-@media(prefers-color-scheme:dark){
-  .celerity-visual{
-    --surface:#263723;
-    --soft:#273c26;
-    --surface-raised:#31482d;
-    --ink:#e0edd6;
-    --secondary:#b5c9a8;
-    --line:#4b6141;
-    background:linear-gradient(145deg,#273723,#223420)
-  }
-  .celerity-visual .node-symbol{
-    background:#b6d692;
-    color:#294220
-  }
-  .orbit-visual{
-    --surface-raised:#4e405e;
-    --ink:#eee3f5;
-    --secondary:#d0badd;
-    --line:#6d587e;
-    background:linear-gradient(145deg,#40314f,#352843)
-  }
-  .orbit-visual .orbit-ring{
-    border-color:#bd9ed63d
-  }
-  .staff-visual{
-    --ink:#e1edf5;
-    --secondary:#b0ccdd;
-    --soft:#344c5e;
-    --surface-raised:#3c566c;
-    background:linear-gradient(145deg,#253b4c,#233748)
-  }
-  .energy-visual{
-    --ink:#f2e6ce;
-    --secondary:#d2c09e;
-    --surface:#3b3528;
-    --surface-raised:#514737;
-    background:linear-gradient(145deg,#3b3529,#3e3627)
-  }
-  .research-feature{
-    background:linear-gradient(135deg,#2b2422,#27231f);
-    border-color:#493b34
-  }
-  .research-partner{
-    color:#e2a49a
-  }
-  .research-feature .ongoing{
-    color:#d0b4a1
-  }
-  .research-feature .research-feature-body h3{
-    color:#f0e1d8
-  }
-  .research-feature .evidence-flow{
-    color:#d0b4a1;
-    border-color:#493b34
-  }
-  .research-feature .evidence-flow i{
-    background:#715749
-  }
-  .education-note{
-    color:#c7aed4!important
-  }
-}
-@media(prefers-color-scheme:light){
+
+
   .orbit-visual{
     --secondary:#5d4d68
   }
   .energy-visual{
     --secondary:#63553e
   }
-}
+
 @media(prefers-contrast:more){
   .project-visual{
     --secondary:var(--ink)

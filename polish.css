@@ -79,18 +79,10 @@
   font-weight: 550;
 }
 .contact-mobile { display: none; }
+.contact-portrait { object-fit: cover; object-position: 50% 35%; }
 .contact-dock:hover .contact-label { background: #20211ff0; }
 
-@media (prefers-color-scheme: dark) {
-  .floating-nav, .contact-dock {
-    background: #3b3d3799;
-    border-color: #ffffff24;
-    box-shadow: 0 8px 28px #00000020, inset 0 1px 0 #ffffff12;
-  }
-  .floating-nav a.is-current { background: #ffffff22; }
-  .contact-monogram { background: #85877d66; }
-  .contact-label { background: #77796e66; }
-}
+
 @media (max-width: 700px) {
   .experience-row { padding: 28px; gap: 20px; }
   .education-card { padding: 28px; }
